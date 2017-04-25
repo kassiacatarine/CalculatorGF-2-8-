@@ -2,6 +2,7 @@
 int bin_poli[9] = {1, 0, 0, 0, 1, 1, 0, 1, 1};
 int bin[8] = {0};
 int bin_result[9] = {1};
+ poli_result;
 
 void converteb(int);
 void leitura();
@@ -11,6 +12,7 @@ void identificador(int);
 void somasubtracao();
 void multiplicacao();
 void divisao();
+void transforma();
 
 void leitura(){
 
@@ -95,6 +97,7 @@ void somasubtracao(){
         i++;
     }
     imprimeb();
+    transforma();
 }
 void multiplicacao(){
 
@@ -122,6 +125,26 @@ void divisao(){
         }
         i++;
     }
+}
+
+void transforma(){
+
+    int i = 0, cont = 8;
+    printf("Polinomio resultante: ");
+    for(i = 0; i < 9; i++){
+        if(bin_result[i] != 0){
+            if(i == 8){
+                printf(" + 1");
+            }else if(i == 7){
+                printf("x");
+            }else{
+                printf("x^%d + ", cont);
+            }
+        }
+        cont--;
+    }
+    printf("\n\n");
+
 }
 int main(){
 
