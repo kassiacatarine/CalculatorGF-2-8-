@@ -2,7 +2,8 @@
 int bin_poli[9] = {1, 0, 0, 0, 1, 1, 0, 1, 1};
 int bin[8] = {0};
 int bin_result[9] = {1};
- poli_result;
+int bin_mult[50] = {0};
+int num;
 
 void converteb(int);
 void leitura();
@@ -15,8 +16,6 @@ void divisao();
 void transforma();
 
 void leitura(){
-
-    int num;
 
     printf("Digite um numero entre 0 e 255\n");
     scanf("%d", &num);
@@ -101,30 +100,62 @@ void somasubtracao(){
 }
 void multiplicacao(){
 
+    int mult, i = 0, aux = num;
+    mult = 283 * num;
+    printf("Resultado da Multiplicacao %d:\n\n", mult);
 
-    int i = 0;
-
-    while(i < 9){
-        if(bin[i] == bin_poli[i + 1]){
-            bin_result[i + 1] = 0;
-        }else{
-            bin_result[i + 1] = 1;
-        }
+    while(mult > 0){
+		// Obtém o resto da divisão de num por 2
+		bin_mult[i] = mult % 2;
+		mult = mult / 2;
         i++;
-    }
+	}
+
+	printf("binario: ");
+
+    aux = i;
+	// percorre o vetor para mostrar o número em binário
+	for(i = 0; i <= aux; i++){
+		printf("%d", bin_mult[i]);
+	}
+	printf("\n\n");
 }
 void divisao(){
 
-    int i = 0;
+    int divi, i = 0, aux;
+    divi = 283 / num;
+    printf("Resultado da Divisao %d:\n\n", divi);
 
-    while(i < 9){
-        if(bin[i] == bin_poli[i + 1]){
-            bin_result[i + 1] = 0;
-        }else{
-            bin_result[i + 1] = 1;
-        }
+    while(divi > 0){
+		// Obtém o resto da divisão de num por 2
+		bin_result[i] = divi % 2;
+		divi = divi / 2;
         i++;
+	}
+
+	printf("binario: ");
+
+    aux = i;
+	// percorre o vetor para mostrar o número em binário
+	for(i = 0; i <= aux; i++){
+		printf("%d", bin_result[i]);
+	}
+	printf("\n\n");
+
+	printf("Polinomio resultante: ");
+    for(i = 0; i <= aux; i++){
+        if(bin_result[i] != 0){
+            if(i == aux){
+                printf(" + 1");
+            }else if(i == aux - 1){
+                printf("x");
+            }else{
+                printf("x^%d + ", cont);
+            }
+        }
+        cont--;
     }
+    printf("\n\n");
 }
 
 void transforma(){
